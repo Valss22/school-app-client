@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoqan Research</title>
+    <link
+      id="theme-css"
+      rel="stylesheet"
+      type="text/css"
+      href="/themes/lara-light-blue/theme.css"
+    />
+  </head>
+  <body>
+    <div id="index_loader_element">
+      <div class="wrapper">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <style id="index_loader_style">
+      #index_loader_element {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+        width: 100%;
+        height: 100%;
+        z-index: 999;
+      }
+      #index_loader_element * {
+        box-sizing: border-box;
+      }
+      #index_loader_element .wrapper {
+        width: 125px;
+        height: 125px;
+        position: relative;
+        animation: loader 2s infinite alternate ease-in-out;
+      }
+      #index_loader_element span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        border-width: 15px;
+        border-style: solid;
+        border-color: #81d1f3;
+      }
+      #index_loader_element span:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        border-width: 12px;
+        border-left-color: rgba(255, 255, 255, 0);
+        border-right-color: rgba(255, 255, 255, 0);
+        animation: zoom 2s infinite alternate ease-in-out;
+      }
+      #index_loader_element span:nth-child(2) {
+        border-top-color: rgba(255, 255, 255, 0);
+        border-bottom-color: rgba(255, 255, 255, 0);
+        animation: unzoom 2s infinite alternate ease-in-out;
+      }
+      @keyframes loader {
+        to {
+          rotate: 359deg;
+        }
+      }
+      @keyframes unzoom {
+        to {
+          width: 80px;
+          height: 80px;
+          border-width: 12px;
+          border-left-color: #b0e5fc;
+          border-right-color: #b0e5fc;
+        }
+      }
+      @keyframes zoom {
+        to {
+          width: 125px;
+          height: 125px;
+          border-width: 15px;
+          border-top-color: #b0e5fc;
+          border-bottom-color: #b0e5fc;
+        }
+      }
+    </style>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#index_loader_element").remove();
+        document.querySelector("#index_loader_style").remove();
+      });
+    </script>
+  </body>
+</html>
