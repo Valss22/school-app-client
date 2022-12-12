@@ -13,15 +13,6 @@ const router = createRouter({
         guestOnly: true,
       },
     },
-    {
-      path: "/user/register",
-      name: "register",
-      component: () => import("@/views/Auth/Register/RegisterView.vue"),
-      meta: {
-        title: "Регистрация",
-        guestOnly: true,
-      },
-    },
   ],
 });
 
