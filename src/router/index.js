@@ -1,67 +1,26 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/views/HomeView.vue";
 import { useAuthStore } from "@/stores/auth";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory("http://127.0.0.1:5173"),
   routes: [
-    // Dashboard
     {
-      path: "/",
-      component: () => import("@/layouts/AuthenticatedLayout.vue"),
-      redirect: { name: "home" },
-      children: [
-        {
-          path: "/",
-          name: "home",
-          component: HomeView,
-          meta: {
-            title: "Главная",
-            authenticatedOnly: true,
-          },
-        },
-        {
-          path: "logout",
-          name: "logout",
-          component: () => import("@/views/LogoutView.vue"),
-          meta: {
-            title: "Выход",
-            authenticatedOnly: true,
-          },
-        },
-        ...userRoutes,
-      ],
+      path: "/user/login",
+      name: "login",
+      component: () => import("@/views/Auth/Login/LoginView.vue"),
+      meta: {
+        title: "Вход",
+        guestOnly: true,
+      },
     },
-    // Unauthenticated
     {
-      path: "/",
-      component: () => import("@/layouts/UnauthenticatedLayout.vue"),
-      children: [
-        // Вход, выход, регистрация
-        {
-          path: "login",
-          name: "login",
-          component: () => import("@/views/Auth/Login/LoginView.vue"),
-          meta: {
-            title: "Вход",
-            guestOnly: true,
-          },
-        },
-        {
-          path: "register",
-          name: "register",
-          component: () => import("@/views/Auth/Register/RegisterView.vue"),
-          meta: {
-            title: "Регистрация",
-            guestOnly: true,
-          },
-        },
-      ],
-    },
-    // 404
-    {
-      path: "/:pathMatch(.*)*",
-      redirect: { name: "home" },
+      path: "/user/register",
+      name: "register",
+      component: () => import("@/views/Auth/Register/RegisterView.vue"),
+      meta: {
+        title: "Регистрация",
+        guestOnly: true,
+      },
     },
   ],
 });

@@ -2,7 +2,6 @@
 import { watch } from "vue";
 import { useRoute } from "vue-router";
 import Toast from "primevue/toast";
-import SettingsSidebar from "@/components/SettingsSidebar.vue";
 
 const route = useRoute();
 
@@ -17,7 +16,6 @@ watch(
 <template>
   <Toast />
   <router-view></router-view>
-  <SettingsSidebar />
 </template>
 
 <style scoped></style>
