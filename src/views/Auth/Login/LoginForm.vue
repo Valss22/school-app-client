@@ -4,7 +4,7 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import ValidationInput from "@/components/Form/ValidationInput.vue";
 
-import { email, helpers, required } from "@vuelidate/validators";
+import { helpers, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 
 import Button from "primevue/button/sfc";
@@ -13,9 +13,9 @@ import { useToast } from "primevue/usetoast";
 const toast = useToast();
 
 const rules = {
-  email: {
+  name: {
     required: helpers.withMessage("Поле обязательно для заполнения", required),
-    email: helpers.withMessage("Введите корректный адрес эл. почты", email),
+    name: helpers.withMessage("Введите корректный адрес эл. почты", required),
   },
   password: {
     required: helpers.withMessage("Поле обязательно для заполнения", required),
@@ -23,7 +23,7 @@ const rules = {
 };
 
 const form = ref({
-  email: "",
+  name: "",
   password: "",
 });
 
@@ -59,18 +59,15 @@ async function onSubmit() {
     isLoading.value = false;
   }
 }
-function onPushToEmailForm() {
-  router.replace({ name: "send-reset-password-link" });
-}
 </script>
 
 <template>
   <form @submit.prevent="onSubmit">
     <ValidationInput
-      v-model:value="v$.email.$model"
-      :errors="v$.email.$errors"
-      type="email"
-      placeholder="Эл. почта"
+      v-model:value="v$.name.$model"
+      :errors="v$.name.$errors"
+      type="text"
+      placeholder="Фамилия Имя"
       icon="pi-user"
       :autofocus="true"
     />
@@ -92,20 +89,6 @@ function onPushToEmailForm() {
       :disabled="isLoading || v$.$invalid"
     />
   </form>
-  <div class="mt-5 flex align-items-center justify-content-between mb-6">
-    <div class="flex align-items-center">
-      <a
-        @click="router.push({ name: 'register' })"
-        class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
-        >Создать аккаунт</a
-      >
-    </div>
-    <a
-      @click="onPushToEmailForm"
-      class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer"
-      >Восстановить пароль</a
-    >
-  </div>
 </template>
 
 <style lang="scss" scoped></style>

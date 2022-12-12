@@ -4,14 +4,10 @@ import LoginForm from "@/views/Auth/Login/LoginForm.vue";
 
 <template>
   <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6 m-auto mt-8">
-    <div class="text-center mb-5">
-      <img
-        src="@/assets/logo.png"
-        alt="Shoqan Research"
-        height="50"
-        class="mb-3"
-      />
-    </div>
+    <span>
+      <h1 class="text-3xl font-bold">Вход в систему</h1>
+      <p class="text-gray-500">Пожалуйста, введите свои данные</p>
+    </span>
     <LoginForm />
   </div>
 </template>
