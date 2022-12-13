@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: "/user/login",
       name: "login",
-      component: () => import("@/views/Auth/Login/LoginView.vue"),
+      component: () => import("@/views/Login/LoginView.vue"),
       meta: {
         title: "Вход",
         guestOnly: true,
