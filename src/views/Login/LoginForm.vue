@@ -13,9 +13,11 @@ import { useToast } from "primevue/usetoast";
 const toast = useToast();
 
 const rules = {
-  name: {
+  lastName: {
     required: helpers.withMessage("Поле обязательно для заполнения", required),
-    name: helpers.withMessage("Введите корректный адрес эл. почты", required),
+  },
+  firstName: {
+    required: helpers.withMessage("Поле обязательно для заполнения", required),
   },
   password: {
     required: helpers.withMessage("Поле обязательно для заполнения", required),
@@ -23,7 +25,8 @@ const rules = {
 };
 
 const form = ref({
-  name: "",
+  lastName: "",
+  firstName: "",
   password: "",
 });
 
@@ -64,10 +67,18 @@ async function onSubmit() {
 <template>
   <form @submit.prevent="onSubmit">
     <ValidationInput
-      v-model:value="v$.name.$model"
-      :errors="v$.name.$errors"
+      v-model:value="v$.lastName.$model"
+      :errors="v$.lastName.$errors"
       type="text"
-      placeholder="Фамилия Имя"
+      placeholder="Фамилия"
+      icon="pi-user"
+      :autofocus="true"
+    />
+    <ValidationInput
+      v-model:value="v$.firstName.$model"
+      :errors="v$.firstName.$errors"
+      type="text"
+      placeholder="Имя"
       icon="pi-user"
       :autofocus="true"
     />
