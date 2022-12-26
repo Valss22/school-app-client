@@ -37,7 +37,7 @@ let isLoading = ref(false);
 const authStore = useAuthStore();
 const router = useRouter();
 
-async function onSubmit() {
+const onSubmit = async () => {
   isLoading.value = true;
   try {
     await authStore.login(form.value);
@@ -61,7 +61,7 @@ async function onSubmit() {
   } finally {
     isLoading.value = false;
   }
-}
+};
 </script>
 
 <template>
